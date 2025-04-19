@@ -3,7 +3,7 @@
 import { useState } from "react"
 import type { CommonInputProps } from "./types"
 
-export function renderPriceRange({ component, isPreview, getAlignmentClass, getGridClass }: CommonInputProps) {
+export function PriceRange({ isPreview, getAlignmentClass, getGridClass }: CommonInputProps) {
   const [priceRange, setPriceRange] = useState([0, 100])
 
   return (

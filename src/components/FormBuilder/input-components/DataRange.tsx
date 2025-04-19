@@ -4,7 +4,7 @@ import { CalendarRange } from "lucide-react"
 import { useState } from "react"
 import type { CommonInputProps } from "./types"
 
-export function renderDateRange({ component, isPreview, getAlignmentClass, getGridClass }: CommonInputProps) {
+export function DateRange({ component, isPreview, getAlignmentClass, getGridClass }: CommonInputProps) {
   const [startDate, setStartDate] = useState("")
   const [endDate, setEndDate] = useState("")
 
@@ -35,7 +35,7 @@ export function renderDateRange({ component, isPreview, getAlignmentClass, getGr
               onChange={(e) => setEndDate(e.target.value)}
               disabled={!isPreview}
               required={component.required}
-              min={startDate} // Ensure end date is after start date
+              min={startDate}
             />
             <CalendarRange className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
           </div>

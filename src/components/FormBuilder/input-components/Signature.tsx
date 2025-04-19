@@ -5,7 +5,7 @@ import type React from "react"
 import { useRef, useState, useEffect } from "react"
 import type { CommonInputProps } from "./types"
 
-export function renderSignature({ component, isPreview, getAlignmentClass, getGridClass }: CommonInputProps) {
+export function Signature({ component, isPreview, getAlignmentClass, getGridClass }: CommonInputProps) {
   const [signatureData, setSignatureData] = useState<string | null>(null)
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const [isDrawing, setIsDrawing] = useState(false)

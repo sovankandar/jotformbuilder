@@ -6,6 +6,7 @@ import { useState } from "react"
 import FORM_TEMPLATES from "@/lib/template/TemplateData"
 import ADVANCED_COMPONENTS from "@/lib/template/AdvancedData"
 import BASIC_COMPONENTS from "@/lib/template/BasicData"
+import { ComponentWithOptions, FormTemplate } from "@/types/form-editor"
 
 interface FormEditorProps {
   formData: FormComponentType[]
@@ -15,7 +16,7 @@ interface FormEditorProps {
 export function FormEditor({ formData, setFormData }: FormEditorProps) {
   const [activeTab, setActiveTab] = useState<"basic" | "advanced" | "templates">("basic")
 
-  const handleAddComponent = (component: any) => {
+  const handleAddComponent = (component: ComponentWithOptions) => {
     const newComponent = {
       ...component,
       id: `${component.type}_${Date.now()}`,
@@ -50,11 +51,11 @@ export function FormEditor({ formData, setFormData }: FormEditorProps) {
       ]
     }
 
-    setFormData([...formData, newComponent])
+    setFormData([...formData, newComponent as FormComponentType])
   }
 
-  const handleAddTemplate = (template: any) => {
-    const componentsWithUniqueIds = template.components.map((component: any) => ({
+  const handleAddTemplate = (template: FormTemplate) => {
+    const componentsWithUniqueIds = template.components.map((component: FormComponentType) => ({
       ...component,
       id: `${component.type}_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
     }))
@@ -118,9 +119,14 @@ export function FormEditor({ formData, setFormData }: FormEditorProps) {
           {componentsList.map((component) => (
             <motion.button
               key={component.id}
-              onClick={() => (activeTab === "templates" ? handleAddTemplate(component) : handleAddComponent(component))}
+              onClick={() => {
+                if (activeTab === "templates") {
+                  handleAddTemplate(component as FormTemplate)
+                } else {
+                  handleAddComponent(component as ComponentWithOptions)
+                }
+              }}
               whileHover={{ scale: 1.02, boxShadow: "0 4px 6px rgba(0,0,0,0.1)" }}
-              whileTap={{ scale: 0.98 }}
               className={`p-3 bg-white rounded-lg border border-gray-200 hover:border-blue-500 text-left flex items-center gap-3 transition-colors ${
                 activeTab === "templates" ? "relative overflow-hidden" : ""
               }`}
@@ -137,7 +143,7 @@ export function FormEditor({ formData, setFormData }: FormEditorProps) {
               {activeTab === "templates" && (
                 <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
                   <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded-full">
-                    {(component as any).components?.length || 0} fields
+                    {((component as FormTemplate).components?.length || 0)} fields
                   </span>
                 </div>
               )}

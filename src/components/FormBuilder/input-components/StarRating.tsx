@@ -4,7 +4,7 @@ import { Star } from "lucide-react"
 import { useState } from "react"
 import type { CommonInputProps } from "./types"
 
-export function renderStarRating({ component, isPreview, getAlignmentClass, getGridClass }: CommonInputProps) {
+export function StarRating({ component, isPreview, getAlignmentClass, getGridClass }: CommonInputProps) {
   const [rating, setRating] = useState(0)
 
   return (

@@ -1,7 +1,7 @@
 import { Facebook, Twitter, Instagram, Linkedin, Youtube, Globe } from "lucide-react"
 import type { CommonInputProps } from "./types"
 
-export function renderSocialLinks({ component, isPreview, getAlignmentClass, getGridClass }: CommonInputProps) {
+export function SocialLinks({ isPreview, getAlignmentClass, getGridClass }: CommonInputProps) {
   return (
     <div className={`${getAlignmentClass()} ${getGridClass()}`}>
       <div className="space-y-3">

@@ -1,7 +1,8 @@
 import { ShoppingCart } from "lucide-react"
 import type { CommonInputProps } from "./types"
+import Image from "next/image"
 
-export function renderProductList({ component, isPreview, getGridClass }: CommonInputProps) {
+export function ProductList({ component, isPreview, getGridClass }: CommonInputProps) {
   return (
     <div className={`${getGridClass()} border rounded-lg overflow-hidden`}>
       <div className="bg-gray-50 p-3 border-b">
@@ -16,7 +17,7 @@ export function renderProductList({ component, isPreview, getGridClass }: Common
         ).map((product) => (
           <div key={product.id} className="p-4 flex items-center gap-4">
             <div className="w-16 h-16 bg-gray-100 rounded-md flex-shrink-0 overflow-hidden">
-              <img
+              <Image
                 src={product.image || "/placeholder.svg"}
                 alt={product.name}
                 className="w-full h-full object-cover"

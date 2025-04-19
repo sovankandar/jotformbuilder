@@ -1,12 +1,12 @@
 "use client"
 
 import type React from "react"
-
+import Image from "next/image"
 import { FileIcon } from "lucide-react"
 import { useState } from "react"
 import type { CommonInputProps } from "./types"
 
-export function renderFileGallery({ component, isPreview, getAlignmentClass, getGridClass }: CommonInputProps) {
+export function FileGallery({ component, isPreview, getAlignmentClass, getGridClass }: CommonInputProps) {
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([])
   const [filePreviewUrls, setFilePreviewUrls] = useState<string[]>([])
 
@@ -52,7 +52,13 @@ export function renderFileGallery({ component, isPreview, getAlignmentClass, get
               <div key={index} className="relative group">
                 <div className="h-24 border rounded-md bg-white flex items-center justify-center overflow-hidden">
                   {uploadedFiles[index]?.type.startsWith("image/") ? (
-                    <img src={url || "/placeholder.svg"} alt={`Preview ${index}`} className="h-full object-contain" />
+                    <Image
+                      src={url || "/placeholder.svg"}
+                      alt={`Preview ${index}`}
+                      width={96}
+                      height={96}
+                      className="h-full object-contain"
+                    />
                   ) : (
                     <div className="flex flex-col items-center p-2 text-center">
                       <FileIcon className="h-8 w-8 text-gray-400" />

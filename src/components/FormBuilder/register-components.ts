@@ -14,17 +14,17 @@ import { renderImage } from "./input-components/Image"
 import { renderFullName } from "./input-components/FullName"
 import { renderAddress } from "./input-components/Address"
 import { renderCreditCard } from "./input-components/CreditCard"
-import { renderProductList } from "./input-components/ProductList"
+import { ProductList } from "./input-components/ProductList"
 import { renderAppointment } from "./input-components/Appointment"
-import { renderStarRating } from "./input-components/StarRating"
+import { StarRating } from "./input-components/StarRating"
 import { renderFeedbackTable } from "./input-components/Feedback"
-import { renderSignature } from "./input-components/Signature"
-import { renderDateRange } from "./input-components/DataRange"
-import { renderPhoneWithCode } from "./input-components/PhoneWithCode"
-import { renderPriceRange } from "./input-components/PriceRange"
-import { renderPricingTier } from "./input-components/PricingTier"
-import { renderSocialLinks } from "./input-components/SocialLinks"
-import { renderFileGallery } from "./input-components/FileGallery"
+import { Signature } from "./input-components/Signature"
+import { DateRange } from "./input-components/DataRange"
+import { PhoneWithCode } from "./input-components/PhoneWithCode"
+import { PriceRange } from "./input-components/PriceRange"
+import { PricingTier } from "./input-components/PricingTier"
+import { SocialLinks } from "./input-components/SocialLinks"
+import { FileGallery } from "./input-components/FileGallery"
 
 // Basic inputs
 registerComponent("button", renderButton)
@@ -53,17 +53,17 @@ registerComponent("image", renderImage)
 registerComponent("fullName", renderFullName)
 registerComponent("address", renderAddress)
 registerComponent("creditCard", renderCreditCard)
-registerComponent("productList", renderProductList)
+registerComponent("productList", ProductList)
 registerComponent("appointment", renderAppointment)
-registerComponent("starRating", renderStarRating)
+registerComponent("starRating", StarRating)
 registerComponent("feedbackTable", renderFeedbackTable)
-registerComponent("signature", renderSignature)
-registerComponent("dateRange", renderDateRange)
-registerComponent("phoneWithCode", renderPhoneWithCode)
-registerComponent("priceRange", renderPriceRange)
-registerComponent("pricingTier", renderPricingTier)
-registerComponent("socialLinks", renderSocialLinks)
-registerComponent("fileGallery", renderFileGallery)
+registerComponent("signature", Signature)
+registerComponent("dateRange", DateRange)
+registerComponent("phoneWithCode", PhoneWithCode)
+registerComponent("priceRange", PriceRange)
+registerComponent("pricingTier", PricingTier)
+registerComponent("socialLinks", SocialLinks)
+registerComponent("fileGallery", FileGallery)
 
 export const initializeComponents = () => {
   // All components are registered above

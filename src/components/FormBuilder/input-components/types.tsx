@@ -10,5 +10,4 @@ export interface CommonInputProps {
   getAlignmentClass: () => string
   getGridClass: () => string
   getGridGapClass?: () => string
-  [key: string]: any
 }

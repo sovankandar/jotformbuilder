@@ -12,7 +12,7 @@ interface AdvancedPropertiesProps {
 export const AdvancedProperties: React.FC<AdvancedPropertiesProps> = ({ component, onUpdate }) => {
   const { theme } = useTheme()
 
-  const handleChange = (field: string, value: any) => {
+  const handleChange = (field: keyof FormComponentType, value: string | number | { pattern?: string; message?: string }) => {
     onUpdate({
       ...component,
       [field]: value,

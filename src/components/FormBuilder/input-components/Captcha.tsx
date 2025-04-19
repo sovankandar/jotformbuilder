@@ -1,6 +1,6 @@
 import type { CommonInputProps } from "./types"
 
-export function renderCaptcha({ component, isPreview, getGridClass }: CommonInputProps) {
+export function renderCaptcha({ isPreview, getGridClass }: CommonInputProps) {
   return (
     <div className={`${getGridClass()} border rounded-md p-4 bg-gray-50`}>
       <div className="flex flex-col items-center space-y-3">

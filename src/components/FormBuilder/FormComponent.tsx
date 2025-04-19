@@ -4,7 +4,7 @@ import type React from "react"
 import { motion } from "framer-motion"
 import type { FormComponentType } from "@/types/types"
 import { Settings, Trash2 } from "lucide-react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { useAppDispatch } from "@/lib/store/hooks"
 import { setSelectedComponent, deleteComponent } from "@/lib/store/formSlice"
 import { getComponentRenderer } from "./component-registry"
@@ -19,8 +19,7 @@ interface FormComponentProps {
   onSettingsClick?: () => void
 }
 
-// Update ComponentRendererProps interface
-interface ComponentRendererProps {
+export interface ComponentRendererProps {
   component: FormComponentType
   isPreview: boolean
   value: string
@@ -52,10 +51,7 @@ export function FormComponent({
     onDelete?.()
   }
 
-  const handleSettingsClick = () => {
-    dispatch(setSelectedComponent(component))
-    onSettingsClick?.()
-  }
+  // Remove handleSettingsClick since it's not used
 
   // Helper function for alignment
   const getAlignmentClass = () => {
@@ -67,7 +63,6 @@ export function FormComponent({
       case "right":
         return "text-right"
       default:
-        // Default alignment based on component type
         return component.type === "button" || component.type === "submit" ? "text-center" : "text-left"
     }
   }
@@ -90,18 +85,10 @@ export function FormComponent({
     }
   }
 
-  const getGridGapClass = () => {
-    switch (component.gridGap) {
-      case "small":
-        return "gap-2"
-      case "large":
-        return "gap-6"
-      default:
-        return "gap-4"
-    }
-  }
+  // Remove getGridGapClass function since it's not being used
 
-  const validateInput = (value: string) => {
+  // Wrap validateInput in useCallback
+  const validateInput = useCallback((value: string) => {
     // Required field validation
     if (component.required && !value) {
       return `${component.label} is required`
@@ -138,7 +125,7 @@ export function FormComponent({
     }
 
     return null
-  }
+  }, [component]) // Add component as dependency since we use its properties
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const newValue = e.target.value
@@ -161,7 +148,7 @@ export function FormComponent({
       const validationError = validateInput(value)
       setError(validationError)
     }
-  }, [isPreview, component.required])
+  }, [isPreview, component.required, validateInput, value])
 
   const renderInput = () => {
     const renderer = getComponentRenderer(component.type)
@@ -176,6 +163,23 @@ export function FormComponent({
       handleBlur: isPreview ? handleBlur : undefined,
       touched: isPreview ? touched : false,
     })
+  }
+
+  // Add these two handler functions
+  const handleComponentDelete = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    handleDelete()
+  }
+
+  const handleComponentSettings = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    // Create a serializable version of the component
+    const serializableComponent = {
+      ...component,
+      icon: undefined // Remove the icon property as it contains non-serializable React elements
+    }
+    dispatch(setSelectedComponent(serializableComponent))
+    onSettingsClick?.()
   }
 
   return (
@@ -204,10 +208,7 @@ export function FormComponent({
           className="absolute -top-3 right-2 flex gap-2 z-10"
         >
           <button
-            onClick={(e) => {
-              e.stopPropagation()
-              onSettingsClick?.()
-            }}
+            onClick={handleComponentSettings}
             className="text-white p-1.5 rounded-md hover:bg-primary/90 transition-colors shadow-md"
             style={{ backgroundColor: theme.colors.primary }}
             title="Edit properties"
@@ -215,10 +216,7 @@ export function FormComponent({
             <Settings size={16} />
           </button>
           <button
-            onClick={(e) => {
-              e.stopPropagation()
-              onDelete?.()
-            }}
+            onClick={handleComponentDelete}
             className="bg-red-500 text-white p-1.5 rounded-md hover:bg-red-600 transition-colors shadow-md"
             title="Delete component"
           >

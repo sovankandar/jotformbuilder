@@ -207,7 +207,7 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
           >
-            {["Contact Form", "Survey", "Event Registration", "Job Application"].map((template, index) => (
+            {["Contact Form", "Survey", "Event Registration", "Job Application"].map((template) => (
               <motion.div
                 key={template}
                 className="bg-white rounded-xl shadow-sm border overflow-hidden"

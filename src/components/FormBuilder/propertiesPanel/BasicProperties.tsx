@@ -14,7 +14,10 @@ export const BasicProperties: React.FC<BasicPropertiesProps> = ({ component, onU
   const [newOption, setNewOption] = useState("")
   const { theme } = useTheme()
 
-  const handleChange = (field: string, value: any) => {
+  const handleChange = (
+    field: keyof FormComponentType,
+    value: string | number | boolean | string[] | { pattern?: string; message?: string }
+  ) => {
     onUpdate({
       ...component,
       [field]: value,

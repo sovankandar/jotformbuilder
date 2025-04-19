@@ -9,7 +9,7 @@ import { FormPreview } from "./FormBuilder/FormPreview"
 import { PropertiesPanel } from "./FormBuilder/PropertiesPanel"
 import { ThemePanel } from "./FormBuilder/ThemePanel"
 import type { FormComponentType } from "@/types/types"
-import { Cog, Eye, Pencil, Smartphone, Tablet, Monitor, Save, Download, Plus, X } from "lucide-react"
+import { Cog, Eye, Pencil, Smartphone, Tablet, Monitor, Plus, X } from "lucide-react"
 import { FormSubmissionFeedback } from "./FormBuilder/FormSubmissionFeedback"
 import { ThemeProvider } from "@/lib/theme/themeContext"
 import { useMediaQuery } from "@/hooks/use-media-query"
@@ -75,26 +75,25 @@ export default function FormBuilder() {
     setSelectedComponent(updated)
   }
 
-  // Custom handler for adding components from the editor
-  const handleAddComponent = (component: any) => {
-    const newComponent = {
-      ...component,
-      id: `${component.type}_${Date.now()}`,
-      label: component.label || "New Component",
-      gridColumns: "full",
-    }
+  // const handleAddComponent = (component: any) => {
+  //   const newComponent = {
+  //     ...component,
+  //     id: `${component.type}_${Date.now()}`,
+  //     label: component.label || "New Component",
+  //     gridColumns: "full",
+  //   }
 
-    if (component.type === "select" || component.type === "radio") {
-      newComponent.options = ["Option 1", "Option 2", "Option 3"]
-    }
+  //   if (component.type === "select" || component.type === "radio") {
+  //     newComponent.options = ["Option 1", "Option 2", "Option 3"]
+  //   }
 
-    setFormData([...formData, newComponent])
+  //   setFormData([...formData, newComponent])
 
-    // Close the sidebar on mobile after adding a component
-    if (isMobileOrTablet) {
-      setShowLeftSidebar(false)
-    }
-  }
+  //   // Close the sidebar on mobile after adding a component
+  //   if (isMobileOrTablet) {
+  //     setShowLeftSidebar(false)
+  //   }
+  // }
 
   const getViewportClass = () => {
     switch (viewportMode) {

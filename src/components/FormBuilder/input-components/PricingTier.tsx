@@ -3,7 +3,7 @@
 import { useState } from "react"
 import type { CommonInputProps } from "./types"
 
-export function renderPricingTier({ component, isPreview, getGridClass }: CommonInputProps) {
+export function PricingTier({ component, isPreview, getGridClass }: CommonInputProps) {
   const [selectedPricingTier, setSelectedPricingTier] = useState<string | null>(null)
 
   return (

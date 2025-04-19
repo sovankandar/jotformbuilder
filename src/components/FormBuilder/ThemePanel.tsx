@@ -72,6 +72,11 @@ const TypographyPanel = () => {
   )
 }
 
+// Add these type definitions
+type FormWidth = "narrow" | "medium" | "wide" | "full"
+type Spacing = "compact" | "normal" | "relaxed"
+type BorderRadius = "none" | "small" | "medium" | "large" | "full"
+
 // Layout Panel Component
 const LayoutPanel = () => {
   const { theme, updateTheme } = useTheme()
@@ -82,7 +87,7 @@ const LayoutPanel = () => {
         <label className="block text-sm font-medium text-gray-700">Form Width</label>
         <select
           value={theme.layout.formWidth}
-          onChange={(e) => updateTheme({ layout: { ...theme.layout, formWidth: e.target.value as any } })}
+          onChange={(e) => updateTheme({ layout: { ...theme.layout, formWidth: e.target.value as FormWidth } })}
           className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
         >
           <option value="narrow">Narrow</option>
@@ -96,7 +101,7 @@ const LayoutPanel = () => {
         <label className="block text-sm font-medium text-gray-700">Spacing</label>
         <select
           value={theme.layout.spacing}
-          onChange={(e) => updateTheme({ layout: { ...theme.layout, spacing: e.target.value as any } })}
+          onChange={(e) => updateTheme({ layout: { ...theme.layout, spacing: e.target.value as Spacing } })}
           className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
         >
           <option value="compact">Compact</option>
@@ -109,7 +114,7 @@ const LayoutPanel = () => {
         <label className="block text-sm font-medium text-gray-700">Border Radius</label>
         <select
           value={theme.layout.borderRadius}
-          onChange={(e) => updateTheme({ layout: { ...theme.layout, borderRadius: e.target.value as any } })}
+          onChange={(e) => updateTheme({ layout: { ...theme.layout, borderRadius: e.target.value as BorderRadius } })}
           className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
         >
           <option value="none">None</option>

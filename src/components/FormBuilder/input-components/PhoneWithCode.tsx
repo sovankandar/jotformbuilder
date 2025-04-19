@@ -3,7 +3,7 @@
 import { useState } from "react"
 import type { CommonInputProps } from "./types"
 
-export function renderPhoneWithCode({ component, isPreview, getAlignmentClass, getGridClass }: CommonInputProps) {
+export function PhoneWithCode({ component, isPreview, getAlignmentClass, getGridClass }: CommonInputProps) {
   const [selectedCountryCode, setSelectedCountryCode] = useState("+1")
   const [phoneNumber, setPhoneNumber] = useState("")
 
